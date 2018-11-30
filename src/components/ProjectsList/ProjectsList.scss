@@ -1,0 +1,18 @@
+.position-block {
+  display: inline-block;
+  width: 60px;
+  border-radius: 4px;
+  color: #fff;
+
+  &-red {
+    background-color: #EB3A3C;
+  }
+
+  &-orange {
+    background-color: #f3a91f;
+  }
+
+  &-green {
+    background-color: #59b659;
+  }
+}

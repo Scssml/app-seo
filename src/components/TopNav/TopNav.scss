@@ -1,0 +1,24 @@
+.top-nav {
+  line-height: 1;
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0 5px;
+  }
+
+  &__link {
+    display: block;
+    color: #fff;
+    padding: 5px 0;
+
+    i {
+      font-size: 30px;
+    }
+  }
+}

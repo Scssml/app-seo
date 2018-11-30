@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container workarea">
-      <h3>Список проектов</h3>
+      <h3>Список архивных проектов</h3>
       <ProjectsList :headers="headers" :items="items"/>
     </div>
   </div>
@@ -10,10 +10,9 @@
 <script>
 import Vue from 'vue'
 import ProjectsList from '@/components/ProjectsList/ProjectsList.vue'
-import axios from 'axios'
 
 export default Vue.extend({
-  name: 'home',
+  name: 'project_archive',
   components: {
     ProjectsList
   },
@@ -53,7 +52,13 @@ export default Vue.extend({
           ]
         }
       },
-      links: [],
+      links: [
+        {
+          name: 'Закрыть',
+          click: () => this.$router.go(-1),
+          icon: 'close'
+        }
+      ],
       headers: [
         'Название',
         // 'Менеджер',
@@ -67,24 +72,7 @@ export default Vue.extend({
   },
   methods: {
     getProjects() {
-      this.$store.dispatch('getProjects').then((projects) => {
-
-        for(let i = 0; i < projects.length; i++) {
-          this.$store.dispatch('getKeywords', projects[i].ID).then((keywords) => {
-            projects[i].UF_TOP_3 = this.$store.getters.getTop(keywords, 3)
-            projects[i].UF_TOP_10 = this.$store.getters.getTop(keywords, 10)
-            projects[i].UF_MIDDLE_POSITION = this.$store.getters.getMiddlePosition(keywords)
-
-            if(projects[i].UF_TOP_10 <= 49) {
-              projects[i].color = 'red'
-            } else if(projects[i].UF_TOP_10 <= 69) {
-              projects[i].color = 'orange'
-            } else {
-              projects[i].color = 'green'
-            }
-          })
-        }
-
+      this.$store.dispatch('getProjectsArchive').then((projects) => {
         this.items = projects
       })
 	  }

@@ -1,3 +1,6 @@
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false,
+  configureWebpack: {
+    entry: './src/main.js'
+  }
 }
